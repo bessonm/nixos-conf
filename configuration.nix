@@ -27,7 +27,7 @@
     device = "sources";
     options = [ "rw" ];
   };
-  
+
   networking.hostName = "nixos-vm"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -60,7 +60,7 @@
     vim
     wget
     zip unzip
-    
+
     git
 
     # X desktop configuration
@@ -106,6 +106,9 @@
     # pantheon.pantheon-terminal
     # alacritty
 
+    # terminal shell
+    zsh
+
     ## terminal multiplexer
     tmux
   ];
@@ -116,7 +119,11 @@
   # programs.bash.enableCompletion = true;
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
-
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableAutosuggestions = true;
+  };
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
