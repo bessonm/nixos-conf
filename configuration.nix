@@ -8,28 +8,37 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./secrets.nix
     ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+  boot.loader.grub.device = "/dev/sda";
 
   # VirtualBox
   boot.initrd.checkJournalingFS = false;
   virtualisation.virtualbox.guest.enable = true;
   fileSystems."/virtualboxshare" = {
     fsType = "vboxsf";
-    device = "sources";
+    device = "source";
     options = [ "rw" ];
   };
 
-  networking.hostName = "nixos-vm"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # Fix issue with RNG Daemon
+  # security.rngd = {
+  #  config = {
+  #    systemd.services.rngd.serviceConfig.ExecStart = "${pkgs.rng_tools}/sbin/rngd -f -v -r /dev/urandom" + (if config.services.tcsd.enable then "--no-tpm=1" else "");
+  #  };
+  #};
+  security.rngd.enable = false;
+
+  networking.hostName = "nixos-vm";
+  # change me in secrets.nix
+  networking.proxy = {
+    # default = "http://proxy.domain:port/";
+    # noProxy = "domain";
+  };
 
   # Select internationalisation properties.
   i18n = {
@@ -48,7 +57,6 @@
       enable = true;
       defaultUser = "bessonm";
       autoLogin = false;
-      theme = /home/bessonm/.config/slim/themes/slim-hud;
     };
   };
 
@@ -59,7 +67,7 @@
     mkpasswd
     vim
     wget
-    zip unzip
+    unar zip unzip
 
     git
 
@@ -67,10 +75,6 @@
 
     ## Internet
     firefox
-
-    ## Media
-    vlc
-    clementine
 
     ## WindowManager
     openbox obconf
@@ -80,8 +84,6 @@
 
     ## App launcher
     albert
-    # synapse
-    # zazu, kupfer, ulauncher, alawalk
 
     ## System monitor
     conky
@@ -94,49 +96,32 @@
     nitrogen
 
     ## file explorer
-    pcmanfm
+    pcmanfm lxmenu-data gvfs
 
     ## editor
-    emacs
     atom
 
     ## terminal emulator
-    rxvt_unicode
-    # hyper
-    # pantheon.pantheon-terminal
-    # alacritty
+    termite
 
     # terminal shell
+    oh-my-zsh
+    powerline-fonts
+    python36Packages.powerline
     zsh
 
     ## terminal multiplexer
     tmux
   ];
 
-  # Some programs need SUID wrappers, can be
-  # configured further or are
-  # started in user sessions.
-  # programs.bash.enableCompletion = true;
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     enableAutosuggestions = true;
   };
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -147,24 +132,24 @@
   services.xserver.libinput.enable = true;
   services.xserver.synaptics.twoFingerScroll = true;
 
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
+  # Enable Desktop Environment.
   services.xserver.windowManager.openbox.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.bessonm = {
      isNormalUser = true;
-     uid = 1000;
+     uid = 4280;
      initialPassword = "changeme";
+     createHome = true;
      home = "/home/bessonm";
-     extraGroups = [ "media" "wheel" "networkmanager" "vboxsf" ];
+     extraGroups = [ "bessonm" "media" "wheel" "networkmanager" "vboxsf" ];
+     shell = pkgs.zsh;
   };
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "17.09"; # Did you read the comment?
+  system.stateVersion = "18.03"; # Did you read the comment?
 
 }
