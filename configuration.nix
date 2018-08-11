@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./secrets.nix
+      ./development.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -19,18 +20,15 @@
   # VirtualBox
   boot.initrd.checkJournalingFS = false;
   virtualisation.virtualbox.guest.enable = true;
-  fileSystems."/virtualboxshare" = {
+  fileSystems."/home/bessonm/shared" = {
     fsType = "vboxsf";
-    device = "source";
-    options = [ "rw" ];
+    device = "vbox_shared";
+    mountPoint = "/home/bessonm/shared";
+    noCheck = true;
+    options = [ "defaults" ];
   };
 
   # Fix issue with RNG Daemon
-  # security.rngd = {
-  #  config = {
-  #    systemd.services.rngd.serviceConfig.ExecStart = "${pkgs.rng_tools}/sbin/rngd -f -v -r /dev/urandom" + (if config.services.tcsd.enable then "--no-tpm=1" else "");
-  #  };
-  #};
   security.rngd.enable = false;
 
   networking.hostName = "nixos-vm";
@@ -50,6 +48,17 @@
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
+  fonts = {
+    enableDefaultFonts = true;
+    fonts = with pkgs; [
+      fira-code
+      fira-code-symbols
+      dina-font
+      proggyfonts
+      hasklig
+    ];
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   services.xserver.displayManager = {
@@ -57,6 +66,7 @@
       enable = true;
       defaultUser = "bessonm";
       autoLogin = false;
+      theme = /home/bessonm/.config/slim/themes/slim-hud;
     };
   };
 
@@ -65,52 +75,64 @@
   environment.systemPackages = with pkgs; [
 
     mkpasswd
+    unar
     vim
+    unzip
     wget
-    unar zip unzip
+    zip
 
-    git
-
-    # X desktop configuration
-
-    ## Internet
-    firefox
-
-    ## WindowManager
-    openbox obconf
-
-    ## Panel
-    tint2
-
-    ## App launcher
-    albert
-
-    ## System monitor
-    conky
-
-    ## Composing manager
+    # Compositing
     compton
 
-    ## wallpaper
-    feh
+    # Browser
+    firefox
+
+    # WindowManager
+    openbox obconf
+
+    # Theme (GTK+)
+    adapta-gtk-theme
+    arc-theme
+    materia-theme
+    numix-gtk-theme
+    numix-sx-gtk-theme
+    paper-gtk-theme
+
+    # Icons
+    arc-icon-theme
+    numix-icon-theme
+    numix-icon-theme-circle
+    numix-icon-theme-square
+    paper-icon-theme
+    papirus-icon-theme
+
+    # Panel
+    polybar
+    tint2
+
+    # App launcher
+    albert
+
+    # System information
+    conky
+    neofetch
+
+    # Wallpaper
     nitrogen
 
     ## file explorer
     pcmanfm lxmenu-data gvfs
 
-    ## editor
-    atom
-
-    ## terminal emulator
+    # Terminal emulator
     termite
 
-    # terminal shell
+    # Terminal shell
     oh-my-zsh
     powerline-fonts
     python36Packages.powerline
     zsh
 
-    ## terminal multiplexer
+    # Terminal multiplexer
     tmux
   ];
 
