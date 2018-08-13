@@ -14,7 +14,7 @@
 * nixos-generate-config --root /mnt
 
 ## For connecting behind corporate proxy
-* export CURL_NIX_FLAGS="-x http://proxy.domain:port/
+* export CURL_NIX_FLAGS="-x http://proxy.domain:port/"
 * export http_proxy=http://proxy.domain:port/
 * export https_proxy=http://proxy.domain:port/
 

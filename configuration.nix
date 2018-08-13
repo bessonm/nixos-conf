@@ -32,11 +32,6 @@
   security.rngd.enable = false;
 
   networking.hostName = "nixos-vm";
-  # change me in secrets.nix
-  networking.proxy = {
-    # default = "http://proxy.domain:port/";
-    # noProxy = "domain";
-  };
 
   # Select internationalisation properties.
   i18n = {
@@ -164,7 +159,7 @@
      initialPassword = "changeme";
      createHome = true;
      home = "/home/bessonm";
-     extraGroups = [ "bessonm" "media" "wheel" "networkmanager" "vboxsf" ];
+     extraGroups = [ "bessonm" "wheel" "networkmanager" "vboxsf" ];
      shell = pkgs.zsh;
   };
 
