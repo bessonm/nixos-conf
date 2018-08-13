@@ -4,6 +4,9 @@
 
 { config, pkgs, ... }:
 
+let
+  unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -54,14 +57,19 @@
     ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
   services.xserver.displayManager = {
     slim = {
       enable = true;
       defaultUser = "bessonm";
       autoLogin = false;
       theme = /home/bessonm/.config/slim/themes/slim-hud;
+    };
+  };
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: {
+      unstable = import unstableTarball { config = config.nixpkgs.config; };
     };
   };
 
@@ -122,6 +130,7 @@
     termite
 
     # Terminal shell
+    unstable.antibody
     oh-my-zsh
     powerline-fonts
     python36Packages.powerline
@@ -152,6 +161,7 @@
   # Enable Desktop Environment.
   services.xserver.windowManager.openbox.enable = true;
 
+  users.defaultUserShell = pkgs.zsh;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.bessonm = {
      isNormalUser = true;
@@ -160,7 +170,6 @@
      createHome = true;
      home = "/home/bessonm";
      extraGroups = [ "bessonm" "wheel" "networkmanager" "vboxsf" ];
-     shell = pkgs.zsh;
   };
 
   # This value determines the NixOS release with which your system is to be
