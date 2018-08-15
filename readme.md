@@ -25,9 +25,9 @@
 * git remote add origin https://github.com/bessonm/nixos-conf.git
 * git fetch --all
 * mv configuration.nix generated.conf.nix
-* git checkout machine/vm
-* diff configuration.nix generated.conf.nix
-* Update configuration if needed
+* git checkout master
+* Update configuration or create new machine if needed
+* sudo ln ./machine/vm.nix machine.nix
 * nixos-install
 * reboot
 

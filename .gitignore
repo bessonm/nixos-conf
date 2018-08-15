@@ -1,4 +1,4 @@
 hardware-configuration.nix
-configuration.nix
 secrets.nix
 result
+machine.nix
