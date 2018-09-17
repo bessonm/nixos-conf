@@ -1,8 +1,7 @@
-# Nixos install in VirtualBox guest
+# How to settle in VirtualBox
 
 * loadkeys fr
 * check ip addressing : ip a
-  * // TODO - In case of wifi need
 * fdisk /dev/sda
   * Use all disk
     * new partition: n
@@ -13,13 +12,15 @@
 * mount /dev/disk/by-label/nixos /mnt
 * nixos-generate-config --root /mnt
 
-## For connecting behind corporate proxy
+## If present, step over the fence
 * export CURL_NIX_FLAGS="-x http://proxy.domain:port/"
 * export http_proxy=http://proxy.domain:port/
 * export https_proxy=http://proxy.domain:port/
 
-## Install git
+## Bring your best pet
 * nix-env -i git
+
+## Pack up, move, unpack, decorate
 * cd /mnt/etc/nixos
 * git init
 * git remote add origin https://github.com/bessonm/nixos-conf.git
@@ -32,3 +33,11 @@
 * reboot
 
 Welcome home again :)
+
+
+# Make room
+
+* sudo nix-env -p /nix/var/nix/profiles/system --list-generations
+* sudo bash -c "cd /boot/loader/entries; ls | grep -v GENERATION_NUMBER | xargs echo OR rm"
+* nix-store --gc --print-roots | awk '{print $1}' | grep /result$ | sudo xargs echo OR rm
+* sudo nix-collect-garbage -d
