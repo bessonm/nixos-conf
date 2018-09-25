@@ -65,5 +65,7 @@
     powerline-fonts
     python36Packages.powerline
 
+    calibre
+
   ];
 }
