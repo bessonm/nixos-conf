@@ -129,6 +129,7 @@
 
     # Screen
     redshift
+    i3lock-color
 
     # Media
     beets
