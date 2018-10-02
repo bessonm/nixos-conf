@@ -39,4 +39,11 @@
 
   security.rngd.enable = false; # Fix issue with RNG Daemon
 
+  # Compositing
+  services = {
+    compton = {
+      enable = true;
+    };
+  };
+
 }
