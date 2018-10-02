@@ -41,7 +41,12 @@ in
 
   services.openssh.enable = true;
 
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableAutosuggestions = true;
+  };
+
   users.defaultUserShell = pkgs.zsh;
 
   users.extraUsers.bessonm = {

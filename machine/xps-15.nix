@@ -148,9 +148,4 @@
 
   ];
 
-  programs.zsh = {
-    enableCompletion = true;
-    enableAutosuggestions = true;
-  };
-
 }
