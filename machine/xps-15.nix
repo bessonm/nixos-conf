@@ -78,10 +78,10 @@
       enable = true;
       latitude = "48.8502";
       longitude = "2.3488";
-      brightness.day = "0.8";
-      brightness.night = "0.8";
+      brightness.day = "0.9";
+      brightness.night = "0.6";
       temperature.day = 5700;
-      temperature.night = 4200;
+      temperature.night = 3900;
     };
 
     mpd = {
@@ -117,14 +117,12 @@
   environment.systemPackages = with pkgs; [
 
     alsaUtils
-    zathura
 
     # Graphics
     bumblebee
 
     # Screen
     redshift
-    i3lock-color
 
     # Media
     beets
@@ -134,6 +132,10 @@
     mpv
     mpvc
     ncmpcpp
+
+    # Reader
+    calibre
+    zathura
 
     # Torrent
     transmission-gtk

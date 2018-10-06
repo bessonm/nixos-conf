@@ -6,6 +6,7 @@ in
 {
 
   nixpkgs.config.allowUnfree = true;
+  system.autoUpgrade.enable = true;
 
   nixpkgs.config.packageOverrides = pkgs: {
     unstable = import unstableTarball { config = config.nixpkgs.config; };

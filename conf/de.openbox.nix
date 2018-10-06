@@ -17,6 +17,9 @@
 
   environment.systemPackages = with pkgs; [
 
+    # Appearance
+
+    # Window Manager
     openbox obconf
 
     # Compositing
@@ -38,34 +41,43 @@
     paper-icon-theme
     papirus-icon-theme
 
-    # Browser
-    firefox
+    # Notification
+    dunst
 
     # Panel
     polybar
     tint2
 
-    # App launcher
-    albert
+    # Colors
+    pywal
 
+    # Lock
+    i3lock-color
+ 
     # System information
     conky
 
     # Wallpaper
+    feh
     nitrogen
+
+    # Applications
+
+    # App launcher
+    albert
+    rofi
+
+    # Browser
+    firefox
 
     # File explorer
     pcmanfm lxmenu-data gvfs
 
+    # Screen capture
+    maim
+
     # Terminal emulator
     termite
-
-    # Shell
-    oh-my-zsh
-    powerline-fonts
-    python36Packages.powerline
-
-    calibre
 
   ];
 }
