@@ -24,7 +24,8 @@ in
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
 
-    direnv   
+    direnv
+    font-awesome_5
     mkpasswd
     neofetch
     tmux
