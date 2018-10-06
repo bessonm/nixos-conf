@@ -9,4 +9,13 @@
   services.xserver.libinput.enable = true;
   services.xserver.synaptics.twoFingerScroll = true;
 
+  environment.systemPackages = with pkgs; [
+
+    xfontsel
+    xorg.xbacklight
+    xorg.xev
+    xorg.xrandr
+
+  ];
+
 }

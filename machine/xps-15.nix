@@ -119,11 +119,6 @@
     alsaUtils
     zathura
 
-    # X
-    xorg.xbacklight
-    xorg.xev
-    xorg.xrandr
-
     # Graphics
     bumblebee
 
