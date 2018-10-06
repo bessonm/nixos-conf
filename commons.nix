@@ -19,13 +19,24 @@ in
     defaultLocale = "fr_FR.UTF-8";
   };
 
-  fonts.enableDefaultFonts = true;
+  fonts = {
+    enableDefaultFonts = true;
+    enableFontDir = true;
+    fonts = with pkgs; [
+      dina-font
+      fira-code
+      fira-code-symbols
+      font-awesome-ttf
+      font-awesome_5
+      hasklig
+      proggyfonts
+    ];
+  };
 
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
 
     direnv
-    font-awesome_5
     mkpasswd
     neofetch
     tmux
