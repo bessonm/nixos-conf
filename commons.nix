@@ -25,6 +25,7 @@ in
     enableFontDir = true;
     fonts = with pkgs; [
       dina-font
+      emojione
       fira-code
       fira-code-symbols
       font-awesome-ttf
