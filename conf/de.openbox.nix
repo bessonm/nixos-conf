@@ -6,6 +6,11 @@
     ../conf/x.nix
   ];
 
+#  services.xserver.displayManager.job.environment = {
+#    SLIM_CFGFILE = "/home/bessonm/.config/slim/slim.conf";
+#    SLIM_THEMESDIR = "/home/bessonm/.config/slim/themes/";
+#  };
+
   services.xserver.displayManager.slim = {
       enable = true;
       defaultUser = "bessonm";
@@ -45,7 +50,11 @@
     dunst
 
     # Panel
-    polybar
+    ( polybar.override {
+        pulseSupport = true;
+        mpdSupport = true;
+      }
+    )
     tint2
 
     # Colors
