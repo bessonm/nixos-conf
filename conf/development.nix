@@ -14,6 +14,7 @@
     atom
     emacs
     jetbrains.idea-community
+    vscode
 
   ];
 }
