@@ -37,13 +37,7 @@
 
   ## Specific ##
 
-  security.rngd.enable = false; # Fix issue with RNG Daemon
-
-  # Compositing
-  services = {
-    compton = {
-      enable = true;
-    };
-  };
+  # Fix issue with RNG Daemon
+  security.rngd.enable = false;
 
 }

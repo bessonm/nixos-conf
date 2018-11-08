@@ -7,8 +7,8 @@
 
   # Imports
   imports = [
-    ./conf/de.openbox.nix
-    ./conf/development.nix
+    ../conf/de.openbox.nix
+    ../conf/development.nix
   ];
 
   # Boot
@@ -59,12 +59,14 @@
 
     # Compositing
     compton = {
-      enable = true;
       backend = "glx";
       vSync = "opengl-swc";
       refreshRate = 0;
       extraOptions =
         ''
+          # Tear-free configuration
+          # @see https://github.com/chjj/compton/wiki/perf-guide
+          # @see https://github.com/chjj/compton/wiki/vsync-guide
           glx-no-stencil = true;
           glx-copy-from-front = false;
           glx-swap-method = "undefined";
@@ -86,7 +88,6 @@
 
     mpd = {
       enable = true;
-      # dataDir = "/home/bessonm/.mpd";
       musicDirectory = "/home/bessonm/Music";
       group = "users";
       extraConfig =
