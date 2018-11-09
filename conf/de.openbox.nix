@@ -37,6 +37,14 @@
     paper-icon-theme
     papirus-icon-theme
 
+    # Cursors
+    unstable.bibata-cursors
+    numix-cursor-theme
+    xbanish
+
+    # Notification
+    dunst
+
     # Panel
     ( polybar.override {
         pulseSupport = true;
