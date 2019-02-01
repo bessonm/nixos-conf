@@ -8,7 +8,7 @@
   # Imports
   imports = [
     ../conf/de.openbox.nix
-    ../conf/development.nix
+    ../conf/dev.common.nix
   ];
 
   # Boot

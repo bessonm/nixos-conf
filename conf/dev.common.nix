@@ -2,8 +2,6 @@
 
 {
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
 
     git
@@ -12,7 +10,6 @@
 
     # Editor
     atom
-    emacs
     jetbrains.idea-community
     vscode
 

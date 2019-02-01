@@ -7,9 +7,9 @@
 
   # Imports
   imports = [
-    ./conf/secrets.nix
-    ./conf/de.openbox.nix
-    ./conf/development.nix
+    ../conf/secrets.nix
+    ../conf/de.openbox.nix
+    ../conf/dev.common.nix
   ];
 
   # Boot
@@ -39,5 +39,12 @@
 
   # Fix issue with RNG Daemon
   security.rngd.enable = false;
+
+  environment.systemPackages = with pkgs; [
+
+    vagrant
+    virtualbox
+
+  ];
 
 }
