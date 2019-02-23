@@ -105,6 +105,9 @@
             path   "/tmp/mpd.fifo"
             format "44100:16:2"
           }
+
+          follow_outside_symlinks "yes"
+          follow_inside_symlinks  "yes"
         '';
     };
   };
