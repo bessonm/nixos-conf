@@ -55,8 +55,6 @@
   };
 
   services = {
-    gnome3.gvfs.enable = true;
-
     # Compositing
     compton = {
       backend = "glx";
@@ -92,6 +90,9 @@
       group = "users";
       extraConfig =
         ''
+        follow_outside_symlinks "yes"
+        follow_inside_symlinks  "yes"
+
           audio_output {
             type       "pulse"
             name       "pulse audio"
@@ -105,15 +106,13 @@
             path   "/tmp/mpd.fifo"
             format "44100:16:2"
           }
-
-          follow_outside_symlinks "yes"
-          follow_inside_symlinks  "yes"
         '';
     };
   };
 
   nixpkgs.config.zathura.useMupdf = true;
 
+  # USB mounting support @see https://nixos.wiki/wiki/PCManFM
   environment.variables.GIO_EXTRA_MODULES = [ "${pkgs.gvfs}/lib/gio/modules" ];
 
   # List packages installed in system profile. To search by name, run:
@@ -146,7 +145,6 @@
 
     # Virtualization
     virtualbox
-
   ];
 
 }
