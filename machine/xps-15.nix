@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  username = (import ../variables.nix).username;
+in
 {
 
   # Version
@@ -20,7 +23,7 @@
 
   # Groups
   users.groups = {
-    audio.members = [ "bessonm" ];
+    audio.members = [ "${username}" ];
   };
 
   # File System
@@ -86,7 +89,7 @@
 
     mpd = {
       enable = true;
-      musicDirectory = "/home/bessonm/Music";
+      musicDirectory = "/home/${username}/Music";
       group = "users";
       extraConfig =
         ''

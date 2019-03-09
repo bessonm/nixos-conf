@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  username = (import ../variables.nix).username;
+in
 {
 
   imports = [
@@ -9,9 +12,8 @@
 
   services.xserver.displayManager.slim = {
     enable = true;
-    defaultUser = "bessonm";
+    defaultUser = "${username}";
     autoLogin = false;
-    theme = /home/bessonm/.config/slim/themes/slim-hud;
   };
 
   services.xserver.windowManager.openbox.enable = true;

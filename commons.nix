@@ -2,6 +2,7 @@
 
 let
   unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+  username = (import ./variables.nix).username;
 in
 {
 
@@ -64,13 +65,13 @@ in
 
   users.defaultUserShell = pkgs.zsh;
 
-  users.extraUsers.bessonm = {
+  users.extraUsers.${username} = {
      isNormalUser = true;
      uid = 4280;
      initialPassword = "changeme";
      createHome = true;
-     home = "/home/bessonm";
-     extraGroups = [ "bessonm" "wheel" "networkmanager" ];
+     home = "/home/${username}";
+     extraGroups = [ "${username}" "wheel" "networkmanager" ];
   };
 
 }

@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  username = (import ../variables.nix).username;
+in
 {
 
   # Version
@@ -23,14 +26,14 @@
 
   # Groups
   users.groups = {
-    vboxsf.members = [ "bessonm" ];
+    vboxsf.members = [ "${username}" ];
   };
 
   # File System
-  fileSystems."/home/bessonm/shared" = {
+  fileSystems."/home/${username}/shared" = {
     fsType = "vboxsf";
     device = "vbox_shared";
-    mountPoint = "/home/bessonm/shared";
+    mountPoint = "/home/${username}/shared";
     noCheck = true;
     options = [ "defaults" ];
   };
