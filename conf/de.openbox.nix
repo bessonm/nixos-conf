@@ -40,7 +40,6 @@ in
     papirus-icon-theme
 
     # Cursors
-    unstable.bibata-cursors
     numix-cursor-theme
     xbanish
 

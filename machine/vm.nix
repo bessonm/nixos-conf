@@ -45,9 +45,6 @@ in
 
   environment.systemPackages = with pkgs; [
 
-    vagrant
-    virtualbox
-
   ];
 
 }
