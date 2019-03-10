@@ -43,6 +43,7 @@ in
     direnv
     mkpasswd
     neofetch
+    powertop
     tmux
     unar
     unzip
