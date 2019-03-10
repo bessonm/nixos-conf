@@ -2,12 +2,16 @@
 
 {
 
-  services.xserver.enable = true;
-  services.xserver.layout = "fr";
-  services.xserver.xkbOptions = "eurosign:e";
+  services.xserver = {
+    enable = true;
+    layout = "fr";
+    xkbOptions = "eurosign:e";
 
-  services.xserver.libinput.enable = true;
-  services.xserver.synaptics.twoFingerScroll = true;
+    libinput.enable = true;
+    synaptics.twoFingerScroll = true;
+
+    desktopManager.xterm.enable = false;
+  };
 
   environment.systemPackages = with pkgs; [
 
