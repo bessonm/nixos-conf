@@ -12,6 +12,7 @@ in
   imports = [
     ../conf/de.openbox.nix
     ../conf/dev.common.nix
+    ../conf/music.nix
   ];
 
   # Boot
