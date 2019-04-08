@@ -43,9 +43,6 @@ in
   # Fix issue with RNG Daemon
   security.rngd.enable = false;
 
-  # Dual Screen
-  services.xserver.xrandrHeads = [ "VGA-2" "VGA-1"];
-
   environment.systemPackages = with pkgs; [
 
   ];
