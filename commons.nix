@@ -56,6 +56,7 @@ in
 
   ];
 
+  boot.plymouth.enable = true;
   services.openssh.enable = true;
 
   programs.zsh = {
