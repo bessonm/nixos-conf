@@ -33,7 +33,7 @@
 * mv configuration.nix generated.conf.nix
 * git checkout master
 * Update configuration or create new machine if needed
-* sudo ln ./machine/vm.nix machine.nix
+* sudo ln -s ./machine/vm.nix machine.nix
 * nixos-install
 * reboot
 
