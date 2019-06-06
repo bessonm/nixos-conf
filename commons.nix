@@ -1,17 +1,12 @@
 { config, pkgs, ... }:
 
 let
-  unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
   username = (import ./variables.nix).username;
 in
 {
 
   nixpkgs.config.allowUnfree = true;
   system.autoUpgrade.enable = true;
-
-  nixpkgs.config.packageOverrides = pkgs: {
-    unstable = import unstableTarball { config = config.nixpkgs.config; };
-  };
 
   time.timeZone = "Europe/Paris";
 
@@ -40,9 +35,11 @@ in
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
 
+    alsaUtils
     direnv
     mkpasswd
     neofetch
+    pciutils
     powertop
     tmux
     unar
@@ -52,7 +49,7 @@ in
     zip
     zsh
 
-    unstable.antibody
+    antibody
 
   ];
 
