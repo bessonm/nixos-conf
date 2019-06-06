@@ -11,6 +11,7 @@
     # Editor
     atom
     jetbrains.idea-community
+    sublime3
     vscode
 
   ];
