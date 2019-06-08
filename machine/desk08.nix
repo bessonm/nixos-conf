@@ -13,6 +13,7 @@ in
     ../conf/de.openbox.nix
     ../conf/dev.common.nix
     ../conf/music.nix
+    ../conf/gaming.nix
   ];
 
   # Boot
@@ -42,13 +43,24 @@ in
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
 
-  # Audio
-  hardware.pulseaudio.enable = true;
+  hardware = {
+    # Audio
+    pulseaudio = {
+      enable = true;
+      support32Bit = true;
+    };
 
-  # Graphics
-  hardware.opengl.driSupport32Bit = true;
+    # Graphics
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
+
+  };
 
   services = {
+    # Graphics
     xserver.videoDrivers = [ "nvidiaLegacy340" ];
 
     # Compositing
