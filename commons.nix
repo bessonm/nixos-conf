@@ -44,6 +44,7 @@ in
     tmux
     unar
     unzip
+    usbutils
     vim
     wget
     zip
@@ -53,7 +54,6 @@ in
 
   ];
 
-  boot.plymouth.enable = true;
   services.openssh.enable = true;
 
   programs.zsh = {
