@@ -84,9 +84,9 @@ in
       latitude = "48.8502";
       longitude = "2.3488";
       brightness.day = "0.9";
-      brightness.night = "0.6";
-      temperature.day = 5700;
-      temperature.night = 3900;
+      brightness.night = "0.7";
+      temperature.day = 5000;
+      temperature.night = 3500;
     };
 
     mpd = {
