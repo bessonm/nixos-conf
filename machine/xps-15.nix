@@ -13,6 +13,7 @@ in
     ../conf/de.openbox.nix
     ../conf/dev.common.nix
     ../conf/music.nix
+    ../conf/gaming.full.nix
   ];
 
   # Boot
@@ -45,6 +46,8 @@ in
   };
 
   ## Specific ##
+
+  hardware.cpu.intel.updateMicrocode = true;
 
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
@@ -123,8 +126,6 @@ in
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-
-    alsaUtils
 
     # Graphics
     bumblebee

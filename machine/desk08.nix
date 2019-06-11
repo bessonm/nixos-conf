@@ -13,7 +13,7 @@ in
     ../conf/de.openbox.nix
     ../conf/dev.common.nix
     ../conf/music.nix
-    ../conf/gaming.nix
+    ../conf/gaming.small.nix
   ];
 
   # Boot
@@ -39,6 +39,8 @@ in
   };
 
   ## Specific ##
+
+  hardware.cpu.intel.updateMicrocode = true;
 
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;

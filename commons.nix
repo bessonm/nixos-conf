@@ -39,6 +39,7 @@ in
     direnv
     mkpasswd
     neofetch
+    p7zip
     pciutils
     powertop
     tmux
