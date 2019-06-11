@@ -6,7 +6,7 @@ in
 {
 
   # Version
-  system.stateVersion = "18.03";
+  system.stateVersion = "19.03";
 
   # Imports
   imports = [
@@ -27,15 +27,6 @@ in
   # Groups
   users.groups = {
     vboxsf.members = [ "${username}" ];
-  };
-
-  # File System
-  fileSystems."/home/${username}/shared" = {
-    fsType = "vboxsf";
-    device = "vbox_shared";
-    mountPoint = "/home/${username}/shared";
-    noCheck = true;
-    options = [ "defaults" ];
   };
 
   ## Specific ##
