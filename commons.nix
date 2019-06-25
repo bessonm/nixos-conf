@@ -71,7 +71,7 @@ in
      initialPassword = "changeme";
      createHome = true;
      home = "/home/${username}";
-     extraGroups = [ "${username}" "wheel" "networkmanager" ];
+     extraGroups = [ "${username}" "wheel" "networkmanager" "video" "input" ];
   };
 
 }

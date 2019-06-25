@@ -14,11 +14,13 @@
     desktopManager.xterm.enable = false;
   };
 
+  hardware.brightnessctl.enable = true;
+
   environment.systemPackages = with pkgs; [
 
+    acpilight
     glxinfo
     xfontsel
-    xorg.xbacklight
     xorg.xdpyinfo
     xorg.xev
     xorg.xrandr
