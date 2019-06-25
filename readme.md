@@ -43,8 +43,6 @@ Welcome home again :)
 # Make room
 
 * sudo nix-env -p /nix/var/nix/profiles/system --list-generations
-* sudo bash -c "cd /boot/loader/entries; ls | grep -v GENERATION_NUMBER | xargs echo OR rm"
-* nix-store --gc --print-roots | awk '{print $1}' | grep /result$ | sudo xargs echo OR rm
 * sudo nix-collect-garbage -d
 
 # Repair EFI boot
