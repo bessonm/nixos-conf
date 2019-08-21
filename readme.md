@@ -23,7 +23,7 @@
 * export https_proxy=http://proxy.domain:port/
 
 ## Bring your best pet
-* nix-env -i git
+* nix-env -i git --verbose
 
 ## Pack up, move, unpack, decorate
 * cd /mnt/etc/nixos
@@ -33,7 +33,7 @@
 * mv configuration.nix generated.conf.nix
 * git checkout master
 * Update configuration or create new machine if needed
-* sudo ln -s ./machine/vm.nix machine.nix
+* ln -s ./machine/vm.nix machine.nix
 * nixos-install
 * reboot
 
