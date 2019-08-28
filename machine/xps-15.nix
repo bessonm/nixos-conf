@@ -13,7 +13,6 @@ in
     ../conf/de.openbox.nix
     ../conf/dev.common.nix
     ../conf/music.nix
-    ../conf/gaming.full.nix
   ];
 
   # Boot
@@ -115,6 +114,11 @@ in
             format "44100:16:2"
           }
         '';
+    };
+
+    gnome3 = {
+      # required for mounting android phones over mtp://
+      gvfs.enable = true;
     };
   };
 

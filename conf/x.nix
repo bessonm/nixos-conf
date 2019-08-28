@@ -5,7 +5,7 @@
   services.xserver = {
     enable = true;
     layout = "fr";
-    xkbOptions = "eurosign:e";
+    xkbOptions = "eurosign:e,ctrl:nocaps";
     exportConfiguration = true; # usefull for debug
 
     libinput.enable = true;
