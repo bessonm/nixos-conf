@@ -31,6 +31,13 @@ in
 
   ## Specific ##
 
+  # File System
+  fileSystems."/windows" = {
+    fsType = "vboxsf";
+    device = "windows";
+    options = [ "rw" "nofail" ];
+  };
+
   # Fix issue with RNG Daemon
   security.rngd.enable = false;
 
