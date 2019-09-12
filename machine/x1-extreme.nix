@@ -10,6 +10,7 @@ in
 
   # Imports
   imports = [
+    ../conf/de.console.nix
     ../conf/de.openbox.nix
     ../conf/dev.common.nix
   ];
@@ -69,46 +70,13 @@ in
   };
 
   services = {
-
     xserver = {
-      #videoDrivers = [ "modesetting" ];
       dpi = 192;
       monitorSection = ''
         DisplaySize 406 228
       '';
     };
-
-    # Compositing
-    compton = {
-      backend = "glx";
-      vSync = "opengl-swc";
-      refreshRate = 0;
-      extraOptions =
-        ''
-          # Tear-free configuration
-          # @see https://github.com/chjj/compton/wiki/perf-guide
-          # @see https://github.com/chjj/compton/wiki/vsync-guide
-          glx-no-stencil = true;
-          glx-copy-from-front = false;
-          glx-swap-method = "undefined";
-          paint-on-overlay = true;
-          dbe = false;
-        '';
-    };
-
-    # Screen
-    redshift = {
-      enable = true;
-      latitude = "48.8502";
-      longitude = "2.3488";
-      brightness.day = "0.9";
-      brightness.night = "0.7";
-      temperature.day = 4600;
-      temperature.night = 3500;
-    };
   };
-
-  nixpkgs.config.zathura.useMupdf = true;
 
   environment.variables = {
 
@@ -121,15 +89,14 @@ in
 
   };
 
+  nixpkgs.config.zathura.useMupdf = true;
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
 
     # Graphics
     bumblebee
-
-    # Screen
-    redshift
 
     # Media
     mpv

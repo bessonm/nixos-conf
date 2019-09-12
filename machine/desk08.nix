@@ -10,6 +10,7 @@ in
 
   # Imports
   imports = [
+    ../conf/de.console.nix
     ../conf/de.openbox.nix
     ../conf/dev.common.nix
     ../conf/music.nix
@@ -64,35 +65,6 @@ in
   services = {
     # Graphics
     xserver.videoDrivers = [ "nvidiaLegacy340" ];
-
-    # Compositing
-    compton = {
-      backend = "glx";
-      vSync = "opengl-swc";
-      refreshRate = 0;
-      extraOptions =
-        ''
-          # Tear-free configuration
-          # @see https://github.com/chjj/compton/wiki/perf-guide
-          # @see https://github.com/chjj/compton/wiki/vsync-guide
-          glx-no-stencil = true;
-          glx-copy-from-front = false;
-          glx-swap-method = "undefined";
-          paint-on-overlay = true;
-          dbe = false;
-        '';
-    };
-
-    # Screen
-    redshift = {
-      enable = true;
-      latitude = "48.8502";
-      longitude = "2.3488";
-      brightness.day = "0.9";
-      brightness.night = "0.75";
-      temperature.day = 5700;
-      temperature.night = 4200;
-    };
 
     mpd = {
       enable = true;

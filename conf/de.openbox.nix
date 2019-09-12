@@ -65,7 +65,7 @@ in
     # Wallpaper
     feh
 
-    # Applications
+    ## Applications
 
     # App launcher
     albert
@@ -78,6 +78,9 @@ in
 
     # Terminal emulator
     termite
+
+    # Misc
+    klavaro
 
   ];
 }

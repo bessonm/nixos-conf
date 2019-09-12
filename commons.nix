@@ -11,7 +11,6 @@ in
   time.timeZone = "Europe/Paris";
 
   i18n = {
-    #consoleFont = "Lat2-Terminus16";
     defaultLocale = "fr_FR.UTF-8";
     consoleUseXkbConfig = true;
   };
@@ -31,6 +30,19 @@ in
     ];
   };
 
+  services = {
+    # Screen color temperature
+    redshift = {
+      enable = true;
+      latitude = "48.8502";
+      longitude = "2.3488";
+      brightness.day = "0.9";
+      brightness.night = "0.7";
+      temperature.day = 4700;
+      temperature.night = 3500;
+    };
+  };
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
@@ -42,6 +54,7 @@ in
     p7zip
     pciutils
     powertop
+    redshift
     tmux
     unar
     unzip
@@ -49,9 +62,7 @@ in
     vim
     wget
     zip
-    zsh
-
-    antibody
+    zsh antibody
 
   ];
 

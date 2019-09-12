@@ -10,6 +10,7 @@ in
 
   # Imports
   imports = [
+    ../conf/de.console.nix
     ../conf/de.openbox.nix
     ../conf/dev.common.nix
     ../conf/music.nix
@@ -51,6 +52,9 @@ in
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
 
+  # Override
+  i18n.consoleFont = "Lat2-Terminus16";
+
   # Audio
   hardware.pulseaudio.enable = true;
 
@@ -62,35 +66,6 @@ in
   };
 
   services = {
-    # Compositing
-    compton = {
-      backend = "glx";
-      vSync = "opengl-swc";
-      refreshRate = 0;
-      extraOptions =
-        ''
-          # Tear-free configuration
-          # @see https://github.com/chjj/compton/wiki/perf-guide
-          # @see https://github.com/chjj/compton/wiki/vsync-guide
-          glx-no-stencil = true;
-          glx-copy-from-front = false;
-          glx-swap-method = "undefined";
-          paint-on-overlay = true;
-          dbe = false;
-        '';
-    };
-
-    # Screen
-    redshift = {
-      enable = true;
-      latitude = "48.8502";
-      longitude = "2.3488";
-      brightness.day = "0.9";
-      brightness.night = "0.7";
-      temperature.day = 5000;
-      temperature.night = 3500;
-    };
-
     mpd = {
       enable = true;
       musicDirectory = "/home/${username}/Music";
@@ -133,9 +108,6 @@ in
 
     # Graphics
     bumblebee
-
-    # Screen
-    redshift
 
     # Media
     beets

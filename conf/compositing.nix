@@ -8,6 +8,10 @@
     compton = {
       enable = true;
 
+      backend = "glx";
+      vSync = "opengl-swc";
+      refreshRate = 0;
+
       # Shadow
       shadow = true;
       shadowOffsets =  [ (-6) (-6) ];
@@ -28,6 +32,15 @@
 
       extraOptions =
         ''
+          # Tear-free configuration
+          # @see https://github.com/chjj/compton/wiki/perf-guide
+          # @see https://github.com/chjj/compton/wiki/vsync-guide
+          glx-no-stencil = true;
+          glx-copy-from-front = false;
+          glx-swap-method = "undefined";
+          paint-on-overlay = true;
+          dbe = false;
+
           # Shadow Misc
           no-dnd-shadow = true;
           no-dock-shadow = true;
