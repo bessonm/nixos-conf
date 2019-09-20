@@ -34,19 +34,26 @@ in
   };
 
   # File System
- fileSystems."/mnt/windows" = {
+  fileSystems."/mnt/windows" = {
     device = "/dev/disk/by-uuid/CABE67A8BE678C2F";
-    fsType = "ntfs";
+    fsType = "ntfs-3g";
+  };
+
+  fileSystems."/mnt/games" = {
+    device = "/dev/disk/by-uuid/aa74abf5-1221-4801-858b-763dd1ae6c7a";
+    fsType = "ext4";
   };
 
   ## Specific ##
 
-  hardware.cpu.intel.updateMicrocode = true;
-
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
+  time.hardwareClockInLocalTime = true;
 
   hardware = {
+
+    cpu.intel.updateMicrocode = true;
+
     # Audio
     pulseaudio = {
       enable = true;

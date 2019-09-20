@@ -50,6 +50,7 @@ in
     alsaUtils
     direnv
     mkpasswd
+    ntfs3g
     neofetch
     p7zip
     pciutils
