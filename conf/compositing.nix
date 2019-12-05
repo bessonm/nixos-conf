@@ -30,8 +30,11 @@
         "class_g = 'albert'"
       ];
 
-      extraOptions =
-        ''
+      # Window type settings
+      wintypes = { tooltip = { fade = true; shadow = false; }; };
+
+      settings = 
+        {
           # Tear-free configuration
           # @see https://github.com/chjj/compton/wiki/perf-guide
           # @see https://github.com/chjj/compton/wiki/vsync-guide
@@ -49,13 +52,7 @@
           shadow-ignore-shaped = false;
 
           detect-client-opacity = true;
-
-          # Window type settings
-          wintypes:
-          {
-            tooltip = { fade = true; shadow = false; };
-          };
-        '';
+        }; 
     };
   };
 
