@@ -33,7 +33,7 @@
       # Window type settings
       wintypes = { tooltip = { fade = true; shadow = false; }; };
 
-      settings = 
+      settings =
         {
           # Tear-free configuration
           # @see https://github.com/chjj/compton/wiki/perf-guide
@@ -52,7 +52,7 @@
           shadow-ignore-shaped = false;
 
           detect-client-opacity = true;
-        }; 
+        };
     };
   };
 

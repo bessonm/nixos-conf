@@ -9,6 +9,8 @@ in
   system.autoUpgrade.enable = true;
 
   time.timeZone = "Europe/Paris";
+  location.latitude = 48.8502;
+  location.longitude = 2.3488;
 
   i18n = {
     defaultLocale = "fr_FR.UTF-8";
@@ -34,8 +36,6 @@ in
     # Screen color temperature
     redshift = {
       enable = true;
-      latitude = "48.8502";
-      longitude = "2.3488";
       brightness.day = "0.9";
       brightness.night = "0.7";
       temperature.day = 4700;
