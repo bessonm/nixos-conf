@@ -9,7 +9,7 @@
       enable = true;
 
       backend = "glx";
-      vSync = "opengl-swc";
+      vSync = true;
       refreshRate = 0;
 
       # Shadow

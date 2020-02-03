@@ -17,7 +17,22 @@ in
   ];
 
   # Boot
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.grub = {
+    enable = true;
+    devices = [ "nodev" ];
+    efiSupport = true;
+    extraEntries = ''
+      menuentry "Windows" {
+        insmod part_gpt
+        insmod fat
+        insmod search_fs_uuid
+        insmod chain
+        search --fs-uuid --set=root 683E-24D4
+        chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+      }
+    '';
+    version = 2;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.plymouth.enable = true;
 
@@ -91,10 +106,10 @@ in
         '';
     };
 
-    gnome3 = {
-      # required for mounting android phones over mtp://
-      gvfs.enable = true;
-    };
+    
+    # required for mounting android phones over mtp://
+    gvfs.enable = true;
+    
   };
 
   nixpkgs.config.zathura.useMupdf = true;
