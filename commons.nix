@@ -49,6 +49,7 @@ in
 
     alsaUtils
     direnv
+    gnupg
     mkpasswd
     ntfs3g
     neofetch
@@ -69,10 +70,14 @@ in
 
   services.openssh.enable = true;
 
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
+  programs = {
+    gnupg.agent.enable = true;
+
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      autosuggestions.enable = true;
+    };
   };
 
   users.defaultUserShell = pkgs.zsh;
