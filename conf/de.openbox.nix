@@ -81,6 +81,7 @@ in
 
     # Misc
     klavaro
+    peek
 
   ];
 }
