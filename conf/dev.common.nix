@@ -9,9 +9,10 @@
     openjdk
 
     # Editor
-    jetbrains.idea-community
     sublime3
-    vscode
+
+    # misc
+    travis
 
   ];
 }
