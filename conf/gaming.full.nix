@@ -41,14 +41,14 @@
       enableParallelN64 = true;
       enableMupen64Plus = true;
 
-      # Gamecube / Wii
-      enableDolphin = true;
+      # Gamecube / Wii - marked as broken
+      # enableDolphin = true;
 
       # Saturn
       enableBeetleSaturn = true;
 
       # Dreamcast
-      enableReicast = true;
+      enableFlycast = true;
 
     };
 
