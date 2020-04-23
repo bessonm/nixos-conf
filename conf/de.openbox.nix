@@ -15,10 +15,8 @@ in
     unstable = import unstableTarball { config = config.nixpkgs.config; };
   };
 
-  services.xserver.displayManager.slim = {
+  services.xserver.displayManager.lightdm = {
     enable = true;
-    defaultUser = "${username}";
-    autoLogin = false;
   };
 
   services.xserver.windowManager.openbox.enable = true;
@@ -70,6 +68,9 @@ in
     # Wallpaper
     feh
 
+    # Sound
+    pavucontrol
+
     ## Applications
 
     # App launcher
@@ -90,6 +91,7 @@ in
 
     # Chat
     unstable.zulip
+    zoom-us
 
   ];
 }
