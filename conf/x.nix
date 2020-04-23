@@ -26,12 +26,12 @@
     desktopManager.xterm.enable = false;
   };
 
-  hardware.brightnessctl.enable = true;
-
   environment.systemPackages = with pkgs; [
 
     acpilight
+    brightnessctl
     glxinfo
+    libnotify
     xfontsel
     xorg.xdpyinfo
     xorg.xev
