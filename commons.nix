@@ -36,10 +36,10 @@ in
     # Screen color temperature
     redshift = {
       enable = true;
-      brightness.day = "0.9";
-      brightness.night = "0.7";
-      temperature.day = 4700;
-      temperature.night = 3500;
+      brightness.day = "0.7";
+      brightness.night = "0.5";
+      temperature.day = 4000;
+      temperature.night = 3200;
     };
   };
 
@@ -47,9 +47,13 @@ in
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
 
+    acpi
     alsaUtils
     direnv
+    dnsutils
     gnupg
+    lm_sensors
+    lsof
     mkpasswd
     ntfs3g
     neofetch
