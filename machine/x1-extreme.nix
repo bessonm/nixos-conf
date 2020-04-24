@@ -2,6 +2,14 @@
 
 let
   username = (import ../variables.nix).username;
+
+  nvoffload = pkgs.writeShellScriptBin "nvoffload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec -a "$0" "$@"
+  '';
 in
 {
 
@@ -41,46 +49,47 @@ in
 
   ## Specific ##
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.blacklistedKernelModules = [ "nouveau" ];
-  boot.earlyVconsoleSetup = true;
-
-  powerManagement = {
-    powertop.enable = true;
-    cpuFreqGovernor = "powersave";
-  };
-
   hardware.cpu.intel.updateMicrocode = true;
+  console.earlySetup = true;
 
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
 
-  # Override
-  i18n.consoleFont = "latarcyrheb-sun32";
-  fonts.fontconfig.dpi = 192;
+  # Fix dual boot time
+  time.hardwareClockInLocalTime = true;
+
+  # Fix fan always on max
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "powersave";
+  };
 
   # Audio
   hardware.pulseaudio.enable = true;
 
   # Graphics
-  hardware.bumblebee = {
-    enable = true;
-    driver = "nvidia";
-    connectDisplay = true;
-  };
 
-  services = {
-    xserver = {
-      dpi = 192;
-      monitorSection = ''
-        DisplaySize 406 228
-      '';
-    };
+  ## HiDPI
+  console.font = "latarcyrheb-sun32";
+  fonts.fontconfig.dpi = 192;
+  services.xserver.dpi = 192;
+  services.xserver.monitorSection = ''
+    DisplaySize 406 228
+  '';
+
+  # Run app using nvoffload
+  boot.blacklistedKernelModules = [ "nouveau" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.prime = {
+    # sync.enable = true;
+    offload.enable = true;
+    nvidiaBusId = "PCI:1:0:0";
+    intelBusId = "PCI:0:2:0";
   };
 
   environment.variables = {
 
-    # Fix sizes of GTK/GNOME ui elements
+    # HiDPI - Fix sizes of GTK/GNOME ui elements
     GDK_SCALE = "2";
     GDK_DPI_SCALE= "0.5";
 
@@ -89,28 +98,21 @@ in
 
   };
 
-  nixpkgs.config.zathura.useMupdf = true;
-
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
 
     # Graphics
-    bumblebee
+    nvoffload
+    vulkan-tools
 
     # Media
     mpv
     mpvc
 
-    # Reader
-    calibre
-    zathura
-
     # Torrent
     transmission-gtk
 
-    # Virtualization
-    virtualbox
   ];
 
 }
