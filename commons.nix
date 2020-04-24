@@ -14,8 +14,10 @@ in
 
   i18n = {
     defaultLocale = "fr_FR.UTF-8";
-    consoleUseXkbConfig = true;
   };
+
+  console.UseXkbConfig = true;
+  console.font = "Lat2-Terminus16";
 
   fonts = {
     enableDefaultFonts = true;

@@ -67,9 +67,6 @@ in
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
 
-  # Override
-  i18n.consoleFont = "Lat2-Terminus16";
-
   # Audio
   hardware.pulseaudio.enable = true;
 
