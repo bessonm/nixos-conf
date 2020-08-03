@@ -86,6 +86,7 @@ in
     termite
 
     # Misc
+    keepassxc
     klavaro
     peek
 
