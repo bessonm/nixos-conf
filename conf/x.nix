@@ -36,6 +36,7 @@
     xorg.xdpyinfo
     xorg.xev
     xorg.xrandr
+    autorandr
 
   ];
 
