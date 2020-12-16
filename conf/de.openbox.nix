@@ -90,9 +90,5 @@ in
     klavaro
     peek
 
-    # Chat
-    unstable.zulip
-    zoom-us
-
   ];
 }

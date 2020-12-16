@@ -29,7 +29,6 @@
   environment.systemPackages = with pkgs; [
 
     acpilight
-    brightnessctl
     glxinfo
     libnotify
     xfontsel

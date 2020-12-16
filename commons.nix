@@ -6,17 +6,15 @@ in
 {
 
   nixpkgs.config.allowUnfree = true;
-  system.autoUpgrade.enable = true;
+  nixpkgs.config.allowBroken = true;
 
   time.timeZone = "Europe/Paris";
   location.latitude = 48.8502;
   location.longitude = 2.3488;
 
-  i18n = {
-    defaultLocale = "fr_FR.UTF-8";
-  };
+  i18n.defaultLocale = "fr_FR.UTF-8";
 
-  console.UseXkbConfig = true;
+  console.useXkbConfig = true;
   console.font = "Lat2-Terminus16";
 
   fonts = {
@@ -35,14 +33,7 @@ in
   };
 
   services = {
-    # Screen color temperature
-    redshift = {
-      enable = true;
-      brightness.day = "0.7";
-      brightness.night = "0.5";
-      temperature.day = 4000;
-      temperature.night = 3200;
-    };
+    openssh.enable = true;
   };
 
   # List packages installed in system profile. To search by name, run:
@@ -51,6 +42,7 @@ in
 
     acpi
     alsaUtils
+    brightnessctl
     direnv
     dnsutils
     gnupg
@@ -62,7 +54,7 @@ in
     p7zip
     pciutils
     powertop
-    redshift
+    sct
     tmux
     unar
     unzip
@@ -74,8 +66,6 @@ in
 
   ];
 
-  services.openssh.enable = true;
-
   programs = {
     gnupg.agent.enable = true;
 
@@ -86,15 +76,19 @@ in
     };
   };
 
-  users.defaultUserShell = pkgs.zsh;
+  users = {
 
-  users.extraUsers.${username} = {
-     isNormalUser = true;
-     uid = 4280;
-     initialPassword = "changeme";
-     createHome = true;
-     home = "/home/${username}";
-     extraGroups = [ "${username}" "wheel" "networkmanager" "video" "input" ];
+    defaultUserShell = pkgs.zsh;
+
+    extraUsers.${username} = {
+      isNormalUser = true;
+      uid = 4280;
+      initialPassword = "changeme";
+      createHome = true;
+      home = "/home/${username}";
+      extraGroups = [ "${username}" "wheel" "networkmanager" "video" "input" ];
+   };
+
   };
 
 }
