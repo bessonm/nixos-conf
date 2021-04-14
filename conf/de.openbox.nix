@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 let
-  unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
   username = (import ../variables.nix).username;
 in
 {
@@ -10,10 +9,6 @@ in
     ./x.nix
     ./compositing.nix
   ];
-
-  nixpkgs.config.packageOverrides = pkgs: {
-    unstable = import unstableTarball { config = config.nixpkgs.config; };
-  };
 
   services.xserver.displayManager.lightdm = {
     enable = true;
