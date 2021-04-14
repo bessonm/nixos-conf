@@ -6,7 +6,7 @@
 
     git
     maven
-    jdk
+    jdk11
 
     # Editor
     sublime3
