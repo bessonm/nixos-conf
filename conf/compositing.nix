@@ -2,10 +2,10 @@
 
 {
 
-  environment.systemPackages = with pkgs; [ compton ];
+  environment.systemPackages = with pkgs; [ picom ];
 
   services = {
-    compton = {
+    picom = {
       enable = true;
 
       backend = "glx";
@@ -15,35 +15,18 @@
       # Shadow
       shadow = true;
       shadowOffsets =  [ (-6) (-6) ];
-      shadowOpacity = "0.3";
-      shadowExclude = [
-        "! name~=''"
-        "n:w:*Firefox*"
-        "class_g = 'albert'"
-      ];
+      shadowOpacity = 0.3;
 
       # Fading
       fade = true;
       fadeDelta = 4;
-      fadeSteps = [ "0.09" "0.09" ];
-      fadeExclude = [
-        "class_g = 'albert'"
-      ];
+      fadeSteps = [ 0.09 0.09 ];
 
       # Window type settings
       wintypes = { tooltip = { fade = true; shadow = false; }; };
 
       settings =
         {
-          # Tear-free configuration
-          # @see https://github.com/chjj/compton/wiki/perf-guide
-          # @see https://github.com/chjj/compton/wiki/vsync-guide
-          glx-no-stencil = true;
-          glx-copy-from-front = false;
-          glx-swap-method = "undefined";
-          paint-on-overlay = true;
-          dbe = false;
-
           # Shadow Misc
           no-dnd-shadow = true;
           no-dock-shadow = true;
