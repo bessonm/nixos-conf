@@ -22,20 +22,10 @@ in
     openbox obconf
 
     # Theme (GTK+)
-    adapta-gtk-theme
-    arc-theme
-    materia-theme
     numix-gtk-theme
-    numix-sx-gtk-theme
-    paper-gtk-theme
 
     # Icons
-    arc-icon-theme
-    numix-icon-theme
     numix-icon-theme-circle
-    numix-icon-theme-square
-    paper-icon-theme
-    papirus-icon-theme
 
     # Cursors
     numix-cursor-theme
@@ -47,7 +37,6 @@ in
     # Panel
     ( polybar.override {
         pulseSupport = true;
-        mpdSupport = true;
       }
     )
 
