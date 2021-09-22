@@ -6,12 +6,12 @@ in
 {
 
   # Version
-  system.stateVersion = "19.03";
+  system.stateVersion = "20.09";
 
   # Imports
   imports = [
     ../conf/secrets.nix
-    ../conf/de.openbox.nix
+    ../conf/de.vm.openbox.nix
     ../conf/dev.common.nix
   ];
 
@@ -23,6 +23,8 @@ in
 
   # Host
   networking.hostName = "nixos-vm";
+  networking.useDHCP = false;
+  networking.interfaces.enp0s3.useDHCP = true;
 
   # Groups
   users.groups = {
@@ -37,9 +39,6 @@ in
     device = "windows";
     options = [ "rw" "nofail" ];
   };
-
-  # Fix issue with RNG Daemon
-  security.rngd.enable = false;
 
   environment.systemPackages = with pkgs; [
 

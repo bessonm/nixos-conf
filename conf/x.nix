@@ -12,7 +12,7 @@
     synaptics.twoFingerScroll = true;
 
     # Disable mouse acceleration
-    libinput.accelProfile = "flat";
+    libinput.touchpad.accelProfile = "flat";
     config = ''
       Section "InputClass"
         Identifier "mouse accel"

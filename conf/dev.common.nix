@@ -10,7 +10,7 @@
 
     # Editor
     sublime3
-    unstable.jetbrains.idea-ultimate
+    downgrade.jetbrains.idea-ultimate
 
     # misc
     travis
