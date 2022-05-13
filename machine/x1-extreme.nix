@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 let
   username = (import ../variables.nix).username;
@@ -14,7 +14,7 @@ in
 {
 
   # Version
-  system.stateVersion = "19.03";
+  system.stateVersion = "21.05";
 
   # Imports
   imports = [
@@ -24,12 +24,23 @@ in
   ];
 
   # Boot
-  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.plymouth.enable = false;
+  boot.plymouth.enable = true;
+  boot.loader.grub = {
+    enable = true;
+    devices = [ "nodev" ];
+    useOSProber = true;
+    efiSupport = true;
+    version = 2;
+  };
 
   # Host
-  networking.hostName = "nixos-x1";
+  networking = {
+    hostName = "nixos-x1";
+    useDHCP = false;
+    interfaces.enp0s31f6.useDHCP = true;
+    interfaces.wlp0s20f3.useDHCP = true;
+  };
 
   # Groups
   users.groups = {
@@ -37,13 +48,14 @@ in
   };
 
   # File System
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/9e46baae-0d6c-4776-894e-5da755a35ab8";
-    fsType = "ext4";
-  };
 
   fileSystems."/mnt/windows" = {
     device = "/dev/disk/by-uuid/3474B00274AFC548";
+    fsType = "ntfs";
+  };
+
+  fileSystems."/mnt/opt" = {
+    device = "/dev/disk/by-uuid/9A6C61506C6127E9";
     fsType = "ntfs";
   };
 
@@ -59,6 +71,7 @@ in
   time.hardwareClockInLocalTime = true;
 
   # Fix fan always on max
+  # powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   powerManagement = {
     enable = true;
     cpuFreqGovernor = "powersave";
@@ -70,12 +83,26 @@ in
   # Graphics
 
   ## HiDPI
+  hardware.video.hidpi.enable = lib.mkDefault true;
   console.font = "latarcyrheb-sun32";
   fonts.fontconfig.dpi = 192;
   services.xserver.dpi = 192;
   services.xserver.monitorSection = ''
     DisplaySize 406 228
   '';
+
+  environment.variables = {
+
+    # HiDPI - Fix sizes of GTK/GNOME ui elements
+    GDK_SCALE = "2";
+    GDK_DPI_SCALE= "0.5";
+    XCURSOR_SIZE = "32";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+
+    # USB mounting support @see https://nixos.wiki/wiki/PCManFM
+    GIO_EXTRA_MODULES = [ "${pkgs.gvfs}/lib/gio/modules" ];
+
+  };
 
   # Run app using nvoffload
   boot.blacklistedKernelModules = [ "nouveau" ];
@@ -87,15 +114,23 @@ in
     intelBusId = "PCI:0:2:0";
   };
 
-  environment.variables = {
+  # Boot with external display
+  specialisation.extdisp = {
+      inheritParentConfig = true;
+      configuration = {
+        system.nixos.tags = [ "extdisp" ];
 
-    # HiDPI - Fix sizes of GTK/GNOME ui elements
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE= "0.5";
+        hardware.nvidia.prime.offload.enable = lib.mkForce false;
+        hardware.nvidia.powerManagement.enable = lib.mkForce false;
 
-    # USB mounting support @see https://nixos.wiki/wiki/PCManFM
-    GIO_EXTRA_MODULES = [ "${pkgs.gvfs}/lib/gio/modules" ];
+        #hardware.video.hidpi.enable = lib.mkForce false;
 
+        #fonts.fontconfig.dpi = lib.mkForce 144;
+        #services.xserver.dpi = lib.mkForce 144;
+
+        #environment.variables.GDK_SCALE = lib.mkForce "1.4";
+        #environment.variables.GDK_DPI_SCALE = lib.mkForce "0.5";
+    };
   };
 
   # List packages installed in system profile. To search by name, run:
