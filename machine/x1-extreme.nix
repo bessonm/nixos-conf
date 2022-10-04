@@ -85,8 +85,7 @@ in
   ## HiDPI
   hardware.video.hidpi.enable = lib.mkDefault true;
   console.font = "latarcyrheb-sun32";
-  fonts.fontconfig.dpi = 192;
-  services.xserver.dpi = 192;
+  services.xserver.dpi = 110;
   services.xserver.monitorSection = ''
     DisplaySize 406 228
   '';
@@ -94,8 +93,8 @@ in
   environment.variables = {
 
     # HiDPI - Fix sizes of GTK/GNOME ui elements
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE= "0.5";
+    GDK_SCALE = "1";
+    GDK_DPI_SCALE= "1";
     XCURSOR_SIZE = "32";
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
 
@@ -109,27 +108,25 @@ in
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.prime = {
     # sync.enable = true;
-    offload.enable = true;
+    offload.enable = false;
     nvidiaBusId = "PCI:1:0:0";
     intelBusId = "PCI:0:2:0";
   };
+  hardware.nvidia.powerManagement.enable = false;
 
   # Boot with external display
-  specialisation.extdisp = {
+  specialisation.nomad = {
       inheritParentConfig = true;
       configuration = {
-        system.nixos.tags = [ "extdisp" ];
+        system.nixos.tags = [ "nomad" ];
 
-        hardware.nvidia.prime.offload.enable = lib.mkForce false;
-        hardware.nvidia.powerManagement.enable = lib.mkForce false;
+        hardware.nvidia.prime.offload.enable = lib.mkForce true;
+        hardware.nvidia.powerManagement.enable = lib.mkForce true;
 
-        #hardware.video.hidpi.enable = lib.mkForce false;
+        services.xserver.dpi = lib.mkForce 192;
 
-        #fonts.fontconfig.dpi = lib.mkForce 144;
-        #services.xserver.dpi = lib.mkForce 144;
-
-        #environment.variables.GDK_SCALE = lib.mkForce "1.4";
-        #environment.variables.GDK_DPI_SCALE = lib.mkForce "0.5";
+        environment.variables.GDK_SCALE = lib.mkForce "2";
+        environment.variables.GDK_DPI_SCALE = lib.mkForce "0.5";
     };
   };
 
