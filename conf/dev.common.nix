@@ -6,14 +6,12 @@
 
     git
     maven
-    jdk11
+    jdk
+    vscode
 
     # Editor
-    sublime3
-    downgrade.jetbrains.idea-ultimate
-
-    # misc
-    travis
+    sublime4
+    jetbrains.idea-ultimate
 
   ];
 }

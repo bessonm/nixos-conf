@@ -3,7 +3,6 @@
 let
   username = (import ./variables.nix).username;
   unstableTarball = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
-  downgradeTarball = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-20.09.tar.gz;
 in
 {
 
@@ -12,7 +11,6 @@ in
 
   nixpkgs.config.packageOverrides = pkgs: {
     unstable = import unstableTarball { config = config.nixpkgs.config; };
-    downgrade = import downgradeTarball { config = config.nixpkgs.config; };
   };
 
   time.timeZone = "Europe/Paris";
@@ -32,7 +30,7 @@ in
       emojione
       fira-code
       fira-code-symbols
-      font-awesome-ttf
+      font-awesome
       font-awesome_5
       hasklig
       proggyfonts

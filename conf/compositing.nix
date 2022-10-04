@@ -27,6 +27,8 @@
 
       settings =
         {
+          unredir-if-possible = false;
+
           # Shadow Misc
           no-dnd-shadow = true;
           no-dock-shadow = true;

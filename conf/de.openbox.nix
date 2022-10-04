@@ -18,6 +18,8 @@ in
 
   environment.systemPackages = with pkgs; [
 
+    xdotool wmctrl
+
     # Window Manager
     openbox obconf
 
@@ -55,9 +57,7 @@ in
     # Sound
     pavucontrol
 
-    ## Applications
-
-    # App launcher
+    # Launcher
     albert
 
     # Browser
@@ -71,8 +71,11 @@ in
 
     # Misc
     keepassxc
-    klavaro
     peek
+
+    # Learn
+    klavaro
+    anki
 
   ];
 }
