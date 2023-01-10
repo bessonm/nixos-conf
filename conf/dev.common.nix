@@ -5,13 +5,13 @@
   environment.systemPackages = with pkgs; [
 
     git
-    maven
+    gradle
     jdk
-    vscode
+    maven
 
-    # Editor
-    sublime4
     jetbrains.idea-ultimate
+    sublime4
+    vscode
 
   ];
 }
