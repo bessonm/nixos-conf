@@ -2,16 +2,11 @@
 
 let
   username = (import ./variables.nix).username;
-  unstableTarball = builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
 in
 {
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowBroken = true;
-
-  nixpkgs.config.packageOverrides = pkgs: {
-    unstable = import unstableTarball { config = config.nixpkgs.config; };
-  };
 
   time.timeZone = "Europe/Paris";
   location.latitude = 48.8502;

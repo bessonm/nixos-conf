@@ -4,7 +4,7 @@
 
   environment.systemPackages = with pkgs; [
 
-    unstable.youtube-dl
+    youtube-dl
 
   ];
 }

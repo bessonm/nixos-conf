@@ -145,8 +145,7 @@ in
     # Torrent
     transmission-gtk
 
-    teams
-    unstable.slack
+    slack
 
   ];
 
