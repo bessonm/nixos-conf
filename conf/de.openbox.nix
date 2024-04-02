@@ -57,6 +57,9 @@ in
     # Sound
     pavucontrol
 
+    # Camera
+    guvcview
+
     # Launcher
     albert
 
@@ -72,6 +75,7 @@ in
     # Misc
     keepassxc
     peek
+    gnumeric
 
     # Learn
     klavaro
