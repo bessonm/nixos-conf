@@ -15,12 +15,11 @@ in
   i18n.defaultLocale = "fr_FR.UTF-8";
 
   console.useXkbConfig = true;
-  #console.font = "Lat2-Terminus16";
 
   fonts = {
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
     fontDir.enable = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       dina-font
       emojione
       fira-code

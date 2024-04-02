@@ -10,7 +10,6 @@
 
       backend = "glx";
       vSync = true;
-      refreshRate = 0;
 
       # Shadow
       shadow = true;

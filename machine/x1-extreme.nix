@@ -31,7 +31,6 @@ in
     devices = [ "nodev" ];
     useOSProber = true;
     efiSupport = true;
-    version = 2;
   };
 
   # Host
@@ -83,7 +82,6 @@ in
   # Graphics
 
   ## HiDPI
-  hardware.video.hidpi.enable = lib.mkDefault true;
   console.font = "latarcyrheb-sun32";
   services.xserver.dpi = 110;
   services.xserver.monitorSection = ''
@@ -114,7 +112,7 @@ in
   };
   hardware.nvidia.powerManagement.enable = false;
 
-  # Boot with external display
+  # Boot with laptop display
   specialisation.nomad = {
       inheritParentConfig = true;
       configuration = {
