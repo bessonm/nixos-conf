@@ -97,9 +97,12 @@ in
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
 
     # USB mounting support @see https://nixos.wiki/wiki/PCManFM
-    GIO_EXTRA_MODULES = [ "${pkgs.gvfs}/lib/gio/modules" ];
+    # GIO_EXTRA_MODULES = [ "${pkgs.gvfs}/lib/gio/modules" ];
 
   };
+
+  # required for mounting android phones over mtp://
+  services.gvfs.enable = true;
 
   # Run app using nvoffload
   boot.blacklistedKernelModules = [ "nouveau" ];

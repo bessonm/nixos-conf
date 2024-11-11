@@ -67,7 +67,7 @@ in
     firefox
 
     # File explorer
-    pcmanfm lxmenu-data gvfs
+    pcmanfm lxmenu-data gvfs udiskie
 
     # Terminal emulator
     termite

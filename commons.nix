@@ -33,6 +33,7 @@ in
 
   services = {
     openssh.enable = true;
+    udisks2.enable = true;
   };
 
   # List packages installed in system profile. To search by name, run:
@@ -56,6 +57,7 @@ in
     powertop
     sct
     tmux
+    udisks
     unar
     unzip
     usbutils
