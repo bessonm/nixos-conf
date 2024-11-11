@@ -122,7 +122,7 @@ in
     zathura
 
     # Torrent
-    transmission-gtk
+    deluge-gtk
 
     # Virtualization
     virtualbox
